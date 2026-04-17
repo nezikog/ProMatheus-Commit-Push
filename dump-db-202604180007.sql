@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict PQMGcOHlAfQye26hXNcZvSCFeAjb0JtVWfOcF7EEOZixSImFvP6NyLO2k1coWpD
+\restrict UdblGx3TvEupFfbYJsPgif1zOZlVwAnbMT7P9K4ATXCKmOaUfmf820HekwMHvPq
 
 -- Dumped from database version 18.3
 -- Dumped by pg_dump version 18.3
 
--- Started on 2026-04-18 00:05:08
+-- Started on 2026-04-18 00:07:48
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -64,7 +64,8 @@ CREATE TABLE public.test (
     id integer NOT NULL,
     course_id integer NOT NULL,
     questions text NOT NULL,
-    answer character varying NOT NULL
+    answer character varying NOT NULL,
+    difficulty integer DEFAULT 1 NOT NULL
 );
 
 
@@ -145,7 +146,7 @@ ALTER TABLE public."user" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- TOC entry 5034 (class 0 OID 16438)
+-- TOC entry 5035 (class 0 OID 16438)
 -- Dependencies: 222
 -- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -153,7 +154,7 @@ ALTER TABLE public."user" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- TOC entry 5038 (class 0 OID 16497)
+-- TOC entry 5039 (class 0 OID 16497)
 -- Dependencies: 226
 -- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -161,7 +162,7 @@ ALTER TABLE public."user" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- TOC entry 5032 (class 0 OID 16424)
+-- TOC entry 5033 (class 0 OID 16424)
 -- Dependencies: 220
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -169,7 +170,7 @@ ALTER TABLE public."user" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- TOC entry 5036 (class 0 OID 16449)
+-- TOC entry 5037 (class 0 OID 16449)
 -- Dependencies: 224
 -- Data for Name: user_course; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -177,7 +178,7 @@ ALTER TABLE public."user" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- TOC entry 5044 (class 0 OID 0)
+-- TOC entry 5045 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -186,7 +187,7 @@ SELECT pg_catalog.setval('public.course_id_seq', 1, false);
 
 
 --
--- TOC entry 5045 (class 0 OID 0)
+-- TOC entry 5046 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: test_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -195,7 +196,7 @@ SELECT pg_catalog.setval('public.test_id_seq', 1, false);
 
 
 --
--- TOC entry 5046 (class 0 OID 0)
+-- TOC entry 5047 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: user_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -204,7 +205,7 @@ SELECT pg_catalog.setval('public.user_course_id_seq', 1, false);
 
 
 --
--- TOC entry 5047 (class 0 OID 0)
+-- TOC entry 5048 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -213,7 +214,7 @@ SELECT pg_catalog.setval('public.user_id_seq', 1, false);
 
 
 --
--- TOC entry 4876 (class 2606 OID 16447)
+-- TOC entry 4877 (class 2606 OID 16447)
 -- Name: course course_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -222,7 +223,7 @@ ALTER TABLE ONLY public.course
 
 
 --
--- TOC entry 4880 (class 2606 OID 16507)
+-- TOC entry 4881 (class 2606 OID 16507)
 -- Name: test test_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -231,7 +232,7 @@ ALTER TABLE ONLY public.test
 
 
 --
--- TOC entry 4878 (class 2606 OID 16467)
+-- TOC entry 4879 (class 2606 OID 16467)
 -- Name: user_course user_course_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -240,7 +241,7 @@ ALTER TABLE ONLY public.user_course
 
 
 --
--- TOC entry 4872 (class 2606 OID 16434)
+-- TOC entry 4873 (class 2606 OID 16434)
 -- Name: user user_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -249,7 +250,7 @@ ALTER TABLE ONLY public."user"
 
 
 --
--- TOC entry 4874 (class 2606 OID 16436)
+-- TOC entry 4875 (class 2606 OID 16436)
 -- Name: user user_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -258,7 +259,7 @@ ALTER TABLE ONLY public."user"
 
 
 --
--- TOC entry 4883 (class 2606 OID 16508)
+-- TOC entry 4884 (class 2606 OID 16508)
 -- Name: test course_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -267,7 +268,7 @@ ALTER TABLE ONLY public.test
 
 
 --
--- TOC entry 4881 (class 2606 OID 16491)
+-- TOC entry 4882 (class 2606 OID 16491)
 -- Name: user_course course_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -276,7 +277,7 @@ ALTER TABLE ONLY public.user_course
 
 
 --
--- TOC entry 4882 (class 2606 OID 16481)
+-- TOC entry 4883 (class 2606 OID 16481)
 -- Name: user_course user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -284,11 +285,11 @@ ALTER TABLE ONLY public.user_course
     ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES public."user"(id) ON DELETE CASCADE;
 
 
--- Completed on 2026-04-18 00:05:08
+-- Completed on 2026-04-18 00:07:48
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict PQMGcOHlAfQye26hXNcZvSCFeAjb0JtVWfOcF7EEOZixSImFvP6NyLO2k1coWpD
+\unrestrict UdblGx3TvEupFfbYJsPgif1zOZlVwAnbMT7P9K4ATXCKmOaUfmf820HekwMHvPq
 
