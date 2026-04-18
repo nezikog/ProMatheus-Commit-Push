@@ -1,4 +1,4 @@
-const API = "http://localhost:5279/api/test";
+const API = "http://localhost:5000/api/tests";
 
 export async function getTests(courseId: number) {
     const res = await fetch(`${API}/course/${courseId}`);

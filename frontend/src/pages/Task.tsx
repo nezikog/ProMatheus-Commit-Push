@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API = "http://localhost:5279/api/tests";
+const API = "http://localhost:5000/api/tests";
 
 export default function TestPage() {
     const [tests, setTests] = useState<any[]>([]);
