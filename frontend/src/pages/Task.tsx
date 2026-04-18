@@ -1,33 +1,58 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { getTests, submitAnswers } from "../api";
 
 interface Test {
     id: number;
-    question: string;
+    courseId: number;
+    questions: string;
     answer: string;
-    points: number;
+    difficulty: number;
+    classId: number;
+    subject: string;
 }
 
 export default function TestPage() {
+    const { lessonId } = useParams();
+
+    const navigate = useNavigate();
+
     const [tests, setTests] = useState<Test[]>([]);
     const [answers, setAnswers] = useState<Record<number, string>>({});
-    const [result, setResult] = useState<{ score: number; max: number } | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    const courseId = 1;
+    const [result, setResult] = useState<{ score: number; max: number } | null>(null);
 
     useEffect(() => {
-        loadTests();
-    }, []);
+        console.log("PARAMS:", lessonId);
 
-    async function loadTests() {
+        if (!lessonId) {
+            setError("Missing route params");
+            setLoading(false);
+            return;
+        }
+
+        load();
+    }, [lessonId]);
+
+    async function load() {
         try {
             setLoading(true);
-            const data = await getTests(courseId);
+
+            const cid = Number(lessonId);
+
+            if (isNaN(cid)) {
+                setError("Invalid params");
+                return;
+            }
+
+            const data = await getTests(cid);
+
+            console.log("TESTS:", data);
+
             setTests(data);
-        } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to load");
+        } catch (e) {
+            setError(e instanceof Error ? e.message : "Error");
         } finally {
             setLoading(false);
         }
@@ -37,8 +62,8 @@ export default function TestPage() {
         setAnswers(prev => ({ ...prev, [id]: value }));
     }
 
-    function normalize(str: string) {
-        return (str ?? "").trim().toLowerCase().replace(/\s+/g, "");
+    function normalize(s: string) {
+        return (s ?? "").trim().toLowerCase().replace(/\s+/g, "");
     }
 
     async function submit() {
@@ -46,50 +71,58 @@ export default function TestPage() {
         let max = 0;
 
         tests.forEach(t => {
-            const correct = normalize(t.answer);
-            const user = normalize(answers[t.id] || "");
-            max += t.points;
-            if (user === correct) score += t.points;
+            max += 1;
+
+            if (normalize(answers[t.id]) === normalize(t.answer)) {
+                score += 1;
+            }
         });
+        const test_first = tests[0]
+        if(score === max){
+            navigate("/handler")
+        }else{
+            navigate(`/lesson/${test_first.courseId}/${test_first.classId}`)
+        }
 
         setResult({ score, max });
-        
-        // Отправка на сервер (если нужно сохранить результат)
-        try {
-            const formattedAnswers = tests.map(t => ({
+
+        await submitAnswers(
+            tests.map(t => ({
                 testId: t.id,
-                userAnswer: answers[t.id] || "",
-                isCorrect: normalize(answers[t.id] || "") === normalize(t.answer)
-            }));
-            await submitAnswers(formattedAnswers);
-        } catch (err) {
-            console.error("Failed to submit to server:", err);
-        }
+                userAnswer: answers[t.id] || ""
+            }))
+        );
     }
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (loading) return <div>Загрузка...</div>;
+    if (error) return <div>Ошибка: {error}</div>;
 
     return (
-        <div style={{ padding: 20, fontFamily: "Arial" }}>
+        <div style={{ padding: 20 }}>
             <h2>Тест</h2>
 
-            {tests.map((t) => (
+            {tests.length === 0 && (
+                <div>Нет тестов</div>
+            )}
+
+            {tests.map((t, i) => (
                 <div key={t.id} style={{ marginBottom: 20 }}>
-                    <p><b>{t.question}</b> : {t.points} балл(а)</p>
+                    <div>Вопрос {i + 1}</div>
+                    <div>{t.questions}</div>
+
                     <input
-                        placeholder="Введите ответ"
                         onChange={(e) => handleAnswer(t.id, e.target.value)}
-                        style={{ padding: 5, width: 200 }}
+                        placeholder="Ответ"
                     />
                 </div>
             ))}
 
-            <button onClick={submit} style={{ marginTop: 20 }}>Отправить</button>
+            <button onClick={submit}>Отправить</button>
 
             {result && (
-                <div style={{ marginTop: 20 }}>
-                    <h3>Результат: {result.score} / {result.max}</h3>
+                <div>
+                    <h3>Результат</h3>
+                    {result.score} / {result.max}
                 </div>
             )}
         </div>

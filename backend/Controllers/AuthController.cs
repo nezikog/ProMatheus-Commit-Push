@@ -32,22 +32,16 @@ namespace backend.Controllers
         {
             try
             {
-                Console.WriteLine("=== REGISTER ===");
-                Console.WriteLine($"Name: {model?.Name}");
-                Console.WriteLine($"Email: {model?.Email}");
+                Console.WriteLine($"Register: {model?.Name}, {model?.Email}");
                 
                 if (model == null)
-                {
                     return BadRequest(new { error = "Model is null" });
-                }
                 
                 var existingUser = await _context.Users
                     .FirstOrDefaultAsync(u => u.Email == model.Email);
                     
                 if (existingUser != null)
-                {
                     return BadRequest(new { error = "Email already exists" });
-                }
                 
                 string hashedPassword = HashPassword(model.Password);
                 
@@ -61,19 +55,15 @@ namespace backend.Controllers
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
                 
-                Console.WriteLine($"User saved with ID: {user.Id}");
-                
                 return Ok(new 
                 { 
                     success = true, 
                     message = "Registration successful",
-                    userId = user.Id,
                     user = new { id = user.Id, name = user.Name, email = user.Email }
                 });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, new { error = ex.Message });
             }
         }
@@ -83,29 +73,22 @@ namespace backend.Controllers
         {
             try
             {
-                Console.WriteLine("=== LOGIN ===");
-                Console.WriteLine($"Email: {model?.Email}");
+                Console.WriteLine($"Login: {model?.Email}");
                 
                 if (model == null)
-                {
                     return BadRequest(new { error = "Model is null" });
-                }
                 
                 var user = await _context.Users
                     .FirstOrDefaultAsync(u => u.Email == model.Email);
                     
                 if (user == null)
-                {
                     return Unauthorized(new { error = "User not found" });
-                }
                 
                 string hashedInputPassword = HashPassword(model.Password);
                 bool validPassword = user.Password == hashedInputPassword;
                 
                 if (!validPassword)
-                {
                     return Unauthorized(new { error = "Invalid password" });
-                }
                 
                 return Ok(new 
                 { 
@@ -116,7 +99,6 @@ namespace backend.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, new { error = ex.Message });
             }
         }
@@ -127,10 +109,6 @@ namespace backend.Controllers
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int CourseId { get; set; }
-        public int ActivityTime { get; set; }
-        public int ClassNumber { get; set; }
-        public string Deadline { get; set; }
     }
     
     public class LoginRequest

@@ -18,5 +18,13 @@ namespace backend.Models
         
         [Column("password")]
         public string Password { get; set; }
+        
+        [Column("class_id")]
+        public int? ClassId { get; set; }
+        
+        // Навигационные свойства
+        public virtual Class Class { get; set; }
+        public virtual ICollection<UserActivity> UserActivities { get; set; }
+        public virtual ICollection<UserDeadline> UserDeadlines { get; set; }
     }
 }
