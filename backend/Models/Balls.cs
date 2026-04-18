@@ -1,7 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace backend.Models;
 
-public class Balls
+[Table("balls")]
+public class Ball
 {
+    [Key]
+    [Column("id")]
     public int Id { get; set; }
-    public int Value { get; set; }
+
+    [Column("balls")]
+    public int Balls { get; set; }
 }

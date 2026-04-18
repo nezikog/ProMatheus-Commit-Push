@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
         : base(options) { }
 
     public DbSet<Test> Tests => Set<Test>();
+    public DbSet<Ball> Balls => Set<Ball>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

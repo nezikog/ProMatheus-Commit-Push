@@ -18,36 +18,30 @@ public class TestController : ControllerBase
 
     // GET: api/tests/course/1
     [HttpGet("course/{courseId}")]
-    public async Task<IActionResult> GetTests(int courseId)
+public async Task<IActionResult> GetTests(int courseId)
+{
+    var tests = await _context.Tests
+        .Where(t => t.CourseId == courseId)
+        .ToListAsync();
+
+    var balls = await _context.Balls.ToListAsync();
+
+    var result = tests.Select(t =>
     {
-        var tests = await _context.Tests
-            .Where(t => t.CourseId == courseId)
-            .ToListAsync();
+        var points = balls.FirstOrDefault(b => b.Id == t.Difficulty)?.Balls ?? 0;
 
-        return Ok(tests);
-    }
-
-    // POST: api/tests/submit
-    [HttpPost("submit")]
-    public async Task<IActionResult> Submit(List<TestAnswerDto> answers)
-    {
-        int score = 0;
-        int max = 0;
-
-        foreach (var a in answers)
+        return new
         {
-            var test = await _context.Tests.FindAsync(a.Id);
-            if (test == null) continue;
+            id = t.Id,
+            question = t.Questions,
+            answer = t.Answer,
+            difficulty = t.Difficulty,
+            points
+        };
+    });
 
-            max += test.Difficulty;
-
-            if (Normalize(a.Answer) == Normalize(test.Answer))
-                score += test.Difficulty;
-        }
-
-        return Ok(new { score, max });
-    }
-
+    return Ok(result);
+}
     private string Normalize(string s)
         => s.Trim().ToLower().Replace(" ", "");
 }
