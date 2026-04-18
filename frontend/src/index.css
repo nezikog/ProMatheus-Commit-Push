@@ -1,8 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 *{
   padding: 0;
   margin: 0;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1{
   color: black;
+}
+
+input, select {
+    transition: all 0.2s ease;
+}
+
+input:hover, select:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+}
+
+input:focus, select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(71,56,205,0.25);
+    border: 2px solid rgb(71,56,205);
+    outline: none;
+}
+
+select {
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+
+button{
+  cursor: pointer;
 }

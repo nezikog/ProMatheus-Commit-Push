@@ -108,7 +108,7 @@ namespace backend.Controllers
 
                 if (existingUserCourse != null)
                 {
-                    return BadRequest(new { error = $"Уже есть1" });
+                    return BadRequest(new { error = $"Вы уже проходите данный курс" });
                 }
                 // 4. Добавляем связь пользователь-курс
                 var userCourse = new UserCourse
