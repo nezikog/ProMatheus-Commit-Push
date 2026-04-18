@@ -1,50 +1,17 @@
-import { useEffect, useState } from 'react'
+import {Routes, Route} from "react-router-dom";
 
-type Course = {
-  id: number
-  name: string
-  path: string
-  img?: string
-}
+import Home from "./pages/Home";
+import Task from "./pages/Task";
 
-function App() {
-  const [courses, setCourses] = useState<Course[]>([])
-
-  useEffect(() => {
-    fetch('http://localhost:5279/api/courses')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data) // 👈 посмотри в консоли
-        setCourses(data)
-      })
-      .catch(err => console.error('Ошибка:', err))
-  }, [])
+export function App() {
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Курсы</h1>
-
-      {courses.length === 0 ? (
-        <p>Нет данных</p>
-      ) : (
-        <div>
-          {courses.map(course => (
-            <div key={course.id} style={{
-              border: '1px solid gray',
-              padding: 10,
-              marginBottom: 10
-            }}>
-              <h2>{course.name}</h2>
-              <p>{course.path}</p>
-
-              {course.img && (
-                <img src={course.img} width={150} />
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}/>
+      {/* <Route path="/reg" element={<Register />}/>
+      <Route path="/log" element={<Login />}/> */}
+      <Route path="/task" element={<Task />}/>
+    </Routes>
   )
 }
 

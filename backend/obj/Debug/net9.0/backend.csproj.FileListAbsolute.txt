@@ -6,11 +6,9 @@ C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\De
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\backend.runtimeconfig.json
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\backend.dll
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\backend.pdb
-C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Microsoft.OpenApi.dll
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Npgsql.dll
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.csproj.AssemblyReference.cache
@@ -19,7 +17,6 @@ C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\De
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.AssemblyInfoInputs.cache
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.AssemblyInfo.cs
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.csproj.CoreCompileInputs.cache
-C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.sourcelink.json
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\rjimswa.dswa.cache.json
@@ -36,3 +33,8 @@ C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\De
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.pdb
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.genruntimeconfig.cache
 C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\ref\backend.dll
+C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Kirill\Desktop\ProMatheusHackaton\ProMatheus-Commit-Push\backend\obj\Debug\net9.0\backend.MvcApplicationPartsAssemblyInfo.cs
