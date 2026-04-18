@@ -61,7 +61,7 @@ export default function TestPage() {
 
     return (
         <div style={{ padding: 20, fontFamily: "Arial" }}>
-            <h2>🧠 Тест</h2>
+            <h2>Тест</h2>
 
             {tests.map((t) => (
                 <div key={t.id} style={{ marginBottom: 20 }}>
@@ -84,7 +84,7 @@ export default function TestPage() {
             {result && (
                 <div style={{ marginTop: 20 }}>
                     <h3>
-                        🎯 Результат: {result.score} / {result.max}
+                         Результат: {result.score} / {result.max}
                     </h3>
                 </div>
             )}

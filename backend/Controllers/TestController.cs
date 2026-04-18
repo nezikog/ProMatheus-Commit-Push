@@ -16,7 +16,6 @@ public class TestController : ControllerBase
         _context = context;
     }
 
-    // GET: api/tests/course/1
     [HttpGet("course/{courseId}")]
 public async Task<IActionResult> GetTests(int courseId)
 {
