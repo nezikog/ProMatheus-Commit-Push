@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { adaptiveStyles } from '../AdaptiveStyle';
 
 export default function Auth() {
     const [isLogin, setIsLogin] = useState(true);
